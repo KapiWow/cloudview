@@ -40,15 +40,19 @@
     <div id="asdf" class="w3-bar-block">
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"
            onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i> Close Menu </a>
-        <a href="#1" id="userBar" onclick="userBarClick(this); return false;"
+        <!--<a href="#1" id="userBar" onclick="userBarClick(this); return false;"-->
+           <!--class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i> User </a>-->
+        <!--<a href="#2" id="serverBar" onclick="serverBarClick(this); return false;"-->
+           <!--class="w3-bar-item w3-button w3-padding"><i class="fa fa-align-justify fa-fw"></i> Server </a>-->
+        <a href="#1" id="userBar" onclick="barClick(this,1); return false;"
            class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i> User </a>
-        <a href="#4" id="serverBar" onclick="serverBarClick(this); return false;"
+        <a href="#2" id="serverBar" onclick="barClick(this,2); return false;"
            class="w3-bar-item w3-button w3-padding"><i class="fa fa-align-justify fa-fw"></i> Server </a>
-        <a href="#3" id="statBar" onclick="statBarClick(this); return false;"
+        <a href="#3" id="statBar" onclick="barClick(this,3); return false;"
            class="w3-bar-item w3-button w3-padding"><i class="fa fa-bar-chart fa-fw"></i> Statistic </a>
-        <a href="#2" id="historyBar" onclick="historyBarClick(this); return false;"
+        <a href="#4" id="historyBar" onclick="barClick(this,4); return false;"
            class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i> History </a>
-        <a href="#5" id="settingBar" onclick="settingBarClick(this); return false;"
+        <a href="#5" id="settingBar" onclick="barClick(this,5); return false;"
            class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i> Settings</a><br><br>
     </div>
 </nav>
@@ -57,10 +61,38 @@
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:200px;margin-top:43px;" id="content">
     <script>
-        function userBarClick(sender) {
+
+        function barClick(sender, barID) {
+            urlName = "";
+            bar = userBar;
+            switch (barID)
+            {
+                case 1:
+                    urlName = "user.html";
+                    bar = userBar;
+                    break;
+                case 2:
+                    urlName = "server.html";
+                    bar = serverBar;
+                    break;
+                case 3:
+                    urlName = "stat.html";
+                    bar = statBar;
+                    break;
+                case 4:
+                    urlName = "history.html";
+                    bar = historyBar;
+                    break;
+                case 5:
+                    urlName = "settings.html";
+                    bar = settingBar;
+                    break;
+                default:
+                    break;
+            }
             $(document).ready(function () {
                 $.ajax({
-                    url: "user.html",
+                    url: urlName,
                     cache: false,
                     success: function (html) {
                         $("#content").html(html);
@@ -68,64 +100,9 @@
                 });
             });
             clearBar();
-            userBar.setAttribute('class', "w3-bar-item w3-button w3-padding w3-blue");
+            bar.setAttribute('class', "w3-bar-item w3-button w3-padding w3-blue");
         }
 
-        function historyBarClick(sender) {
-            $(document).ready(function () {
-                $.ajax({
-                    url: "history.html",
-                    cache: false,
-                    success: function (html) {
-                        $("#content").html(html);
-                    }
-                });
-            });
-            clearBar();
-            historyBar.setAttribute('class', "w3-bar-item w3-button w3-padding w3-blue");
-        }
-
-        function serverBarClick(sender) {
-            $(document).ready(function () {
-                $.ajax({
-                    url: "server.html",
-                    cache: false,
-                    success: function (html) {
-                        $("#content").html(html);
-                    }
-                });
-            });
-            clearBar();
-            serverBar.setAttribute('class', "w3-bar-item w3-button w3-padding w3-blue");
-        }
-
-        function statBarClick(sender) {
-            $(document).ready(function () {
-                $.ajax({
-                    url: "stat.html",
-                    cache: false,
-                    success: function (html) {
-                        $("#content").html(html);
-                    }
-                });
-            });
-            clearBar();
-            statBar.setAttribute('class', "w3-bar-item w3-button w3-padding w3-blue");
-        }
-
-        function settingBarClick(sender) {
-            $(document).ready(function () {
-                $.ajax({
-                    url: "settings.html",
-                    cache: false,
-                    success: function (html) {
-                        $("#content").html(html);
-                    }
-                });
-            });
-            clearBar();
-            settingBar.setAttribute('class', "w3-bar-item w3-button w3-padding w3-blue");
-        }
     </script>
 </div>
 </body>
