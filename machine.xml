@@ -1,0 +1,16 @@
+<machine>
+    <id>5382</id>
+    <cpu>
+        <model>Intel® Core™ i7-7700</model>
+        <frequency>3.60</frequency>
+        <core>4</core>
+        <cost>300</cost>
+        <manufacturer>Intel</manufacturer>
+    </cpu>
+    <disk>
+        <model>Samsung MZ-75E250BW</model>
+        <volume>250</volume>
+        <manufacturer>Samsung</manufacturer>
+        <type>SSD</type>
+    </disk>
+</machine>
