@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "title": "machine",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "cpu": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "string"
+        },
+        "frequency": {
+          "type": "number"
+        },
+        "core": {
+          "type": "integer"
+        },
+        "cost": {
+          "type": "integer"
+        },
+        "manufacturer": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "model",
+        "frequency",
+        "core",
+        "cost",
+        "manufacturer"
+      ]
+    },
+    "disk": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "string"
+        },
+        "volume": {
+          "type": "integer"
+        },
+        "manufacturer": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "model",
+        "volume",
+        "manufacturer",
+        "type"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "cpu",
+    "disk"
+  ]
+}

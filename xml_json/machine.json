@@ -1,0 +1,16 @@
+{
+  "id": 5382,
+  "cpu": {
+    "model": "Intel® Core™ i7-7700",
+    "frequency": 3.60,
+    "core": 4,
+    "cost": 300,
+    "manufacturer": "Intel"
+  },
+  "disk": {
+    "model": "Samsung MZ-75E250BW",
+    "volume": 250,
+    "manufacturer": "Samsung",
+    "type": "SSD"
+  }
+}
