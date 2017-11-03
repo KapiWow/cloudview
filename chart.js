@@ -14,7 +14,7 @@ function drawChart() {
     data.addColumn('string', 'Topping');
     data.addColumn('number', 'Slices');
     data.addRows([
-        ['Europe', 46],
+        ['Europe', 460],
         ['North America', 340],
         ['Asia', 200],
         ['Africa', 18]
