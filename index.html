@@ -4,9 +4,8 @@
     <title>CloudView</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="scripts/jquery.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <!--<script src="chart.js"></script>-->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -23,7 +22,7 @@
 <script>
     function clearBar() {
         userBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
-        historyBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
+//        historyBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
         serverBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
         statBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
         monitorBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
@@ -51,9 +50,9 @@
            class="w3-bar-item w3-button w3-padding"><i class="fa fa-align-justify fa-fw"></i> Server </a>
         <a href="#3" id="statBar" onclick="barClick(this,3); return false;"
            class="w3-bar-item w3-button w3-padding"><i class="fa fa-bar-chart fa-fw"></i> Statistic </a>
-        <a href="#4" id="historyBar" onclick="barClick(this,4); return false;"
-           class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i> History </a>
-        <a href="#5" id="monitorBar" onclick="barClick(this,5); return false;"
+        <!--<a href="#4" id="historyBar" onclick="barClick(this,4); return false;"-->
+           <!--class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i> History </a>-->
+        <a href="#4" id="monitorBar" onclick="barClick(this,5); return false;"
            class="w3-bar-item w3-button w3-padding"><i class="fa fa-refresh fa-fw"></i> Monitor</a><br><br>
     </div>
 </nav>

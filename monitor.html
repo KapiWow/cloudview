@@ -1,13 +1,10 @@
-<header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-users"></i> Overview</b></h5>
-</header>
-<!-- Main info -->
-<div  class="w3-container" id="user">
-    <h2>Monitor</h2>
-</div>
+<script src="scripts/CPUMonitor.js"></script>
 
+<header class="w3-container" style="padding-top:22px">
+    <h2><b><i class="fa fa-refresh"></i> Monitor</b></h2>
+</header>
 <!--Usage statistic-->
-<div class="w3-container">
+<div class="w3-container w3-margin">
     <h5>Server monitor</h5>
     <p>CPU</p>
     <div class="w3-grey">
@@ -28,10 +25,19 @@
     <div class="w3-grey">
         <div class="w3-container w3-center w3-padding-small w3-yellow" style="width:6%">6%</div>
     </div>
+    <div class="w3-container w3-margin"  id="CPUChart">
+
+    </div>
+    <div class="w3-container w3-margin"  id="MemoryChart">
+
+    </div>
+    <div class="w3-container w3-margin"  id="DiskChart">
+
+    </div>
 </div>
 
 <!-- Footer -->
-<footer class="w3-container w3-padding-16 w3-light-grey">
-    <p>Powered by Kapi</a></p>
-</footer>
+<!--<footer class="w3-container w3-padding-16 w3-light-grey">-->
+    <!--<p>Powered by Kapi</a></p>-->
+<!--</footer>-->
 <!-- End page content -->

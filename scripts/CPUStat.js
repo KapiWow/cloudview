@@ -2,30 +2,30 @@
 google.charts.load('current', {'packages':['corechart']});
 
 // Set a callback to run when the Google Visualization API is loaded.
-google.charts.setOnLoadCallback(drawChart);
+google.charts.setOnLoadCallback(drawCPUChart);
 
 // Callback that creates and populates a data table,
 // instantiates the pie chart, passes in the data and
 // draws it.
-function drawChart() {
+function drawCPUChart() {
 
     // Create the data table.
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Topping');
     data.addColumn('number', 'Slices');
     data.addRows([
-        ['Europe', 460],
-        ['North America', 340],
-        ['Asia', 200],
-        ['Africa', 18]
+        ['intel core i7', 1000],
+        ['intel core i5', 250],
+        ['intel core i3', 60],
+        ['AMD', 40]
     ]);
 
     // Set chart options
-    var options = {'title':'Country',
-        'width':600,
-        'height':400};
+    var options = {'title':'CPU',
+        'width': getComputedStyle(CPU_div).width ,
+        'height': 400 };
 
     // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+    var chart = new google.visualization.PieChart(document.getElementById('CPU_div'));
     chart.draw(data, options);
 }
