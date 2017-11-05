@@ -4,21 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/stat.html" line="11" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1ca7918-12af-47c4-81e4-d669e7a68003" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/CPUMonitor.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/CPUStat.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/a.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/as.html" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/chart.js" afterPath="$PROJECT_DIR$/scripts/chart.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jquery.js" afterPath="$PROJECT_DIR$/scripts/jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/history.html" afterPath="$PROJECT_DIR$/history.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/monitor.html" afterPath="$PROJECT_DIR$/monitor.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.html" afterPath="$PROJECT_DIR$/server.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stat.html" afterPath="$PROJECT_DIR$/stat.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/user.html" afterPath="$PROJECT_DIR$/user.html" />
-    </list>
+    <list default="true" id="a1ca7918-12af-47c4-81e4-d669e7a68003" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -31,11 +17,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="425">
               <caret line="25" column="76" lean-forward="true" selection-start-line="25" selection-start-column="76" selection-end-line="25" selection-end-column="76" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="swagger.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/xml_json/swagger.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-697">
+              <caret line="19" column="15" lean-forward="true" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -331,12 +327,12 @@
       <workItem from="1509706911959" duration="596000" />
       <workItem from="1509794314684" duration="1472000" />
       <workItem from="1509825733502" duration="5981000" />
-      <workItem from="1509881761952" duration="11306000" />
+      <workItem from="1509881761952" duration="11908000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62790000" />
+    <option name="totallyTimeSpent" value="63392000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
@@ -391,7 +387,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/xml_json/machine.xml" />
     <entry file="file://$PROJECT_DIR$/xml_json/machineA.xml" />
     <entry file="file://$PROJECT_DIR$/xml_json/machine.json" />
     <entry file="file://$PROJECT_DIR$/history.html">
@@ -701,6 +696,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="25" column="76" lean-forward="true" selection-start-line="25" selection-start-column="76" selection-end-line="25" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xml_json/swagger.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-697">
+          <caret line="19" column="15" lean-forward="true" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
           <folding />
         </state>
       </provider>
