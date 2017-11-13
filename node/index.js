@@ -17,7 +17,7 @@ function accept(req, res) {
     var query = url.parse(req.url).query,
         params = qs.parse(query);
     var type = req.url.split('?')[0];
-    if (type === '/getInfo') {
+    if (type === '/getCurrentUsage') {
         // console.log('getInfoServer');
         client.query('SELECT * FROM usage WHERE machineID = ' + params.machineID, (err, resDB) => {
             res.end(JSON.stringify(resDB.rows[0]));
@@ -25,6 +25,14 @@ function accept(req, res) {
             // console.log(typeof resDB.rows[0].cpu);
             // console.log(typeof Client);
         })
+    } else if (type === '/getMachineInfo') {
+        // console.log('getInfoServer');
+        client.query('SELECT * FROM allInfo2 WHERE machineID = ' + params.machineID, (err, resDB) => {
+            res.end(JSON.stringify(resDB.rows[0]));
+        // console.log(typeof resDB.rows[0].datatime);
+        // console.log(typeof resDB.rows[0].cpu);
+        // console.log(typeof Client);
+    })
     } else {
         file.serve(req, res);
     }

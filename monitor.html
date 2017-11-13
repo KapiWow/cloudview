@@ -11,19 +11,25 @@
     </p>
 
 
-    <div class="w3-col w3-border w3-margin w3-right">
+    <div id="info" class="w3-col w3-border w3-margin w3-right">
 
         <!--CPU-->
         <div class="w3-container w3-border ">
             <h3>CPU</h3>
-            <div class="w3-container w3-margin ">
-                <label> Number of cores </label>
+            <div id="123" class="w3-container w3-margin ">
+                <div class="w3-row w3-margin">
+                    <div class="w3-col" style="width:20%"> Model name</div>
+                    <div id="cpuModel" class="w3-col" style="width:80%"> Intel asdfasdf</div>
+                </div>
             </div>
             <div class="w3-container w3-margin ">
-                <label> Manufacturer </label>
+                <label id="cpuCores"> Number of cores </label>
             </div>
             <div class="w3-container w3-margin ">
-                <label> Frequence, Ghz </label>
+                <label id="cpuManufacturer"> Manufacturer </label>
+            </div>
+            <div class="w3-container w3-margin ">
+                <label id="cpuFrequency"> Frequency, Ghz </label>
             </div>
         </div>
 
@@ -31,13 +37,14 @@
         <div class="w3-container w3-border ">
             <h3>Disk</h3>
             <div class="w3-container w3-margin ">
+                <label> Model name </label>
+            </div>
+            <div class="w3-container w3-margin ">
                 <label>Volume</label>
             </div>
-
             <div class="w3-container w3-margin ">
                 <label> Type </label>
             </div>
-
             <div class="w3-container w3-margin ">
                 <label> Manufacturer </label>
             </div>
@@ -46,11 +53,12 @@
         <!--Memory-->
         <div class="w3-container w3-border ">
             <h3>Memory</h3>
-
+            <div class="w3-container w3-margin ">
+                <label> Model name </label>
+            </div>
             <div class="w3-container w3-margin ">
                 <label>Volume</label>
             </div>
-
             <div class="w3-container w3-margin ">
                 <label>Frequency</label>
             </div>
@@ -60,15 +68,13 @@
         <div class="w3-container w3-border">
             <h3>Region</h3>
             <div class="w3-container w3-margin ">
-                <div class="w3-container w3-margin ">
-                    <label> Continent </label>
-                </div>
-                <div class="w3-container w3-margin ">
-                    <label> Country </label>
-                </div>
-                <div class="w3-container w3-margin ">
-                    <label> City </label>
-                </div>
+                <label> Continent </label>
+            </div>
+            <div class="w3-container w3-margin ">
+                <label> Country </label>
+            </div>
+            <div class="w3-container w3-margin ">
+                <label> City </label>
             </div>
         </div>
     </div>
@@ -101,19 +107,72 @@
 </div>
 
 <script>
+    function createInfoElem(parent, name, param) {
+        var row = document.createElement('div');
+        row.className = "w3-row w3-margin";
+        var firstCol = document.createElement('div'),
+            secondCol = document.createElement('div');
+        firstCol.className = "w3-col";
+        firstCol.style = "width:20%";
+        firstCol.innerHTML = name;
+        secondCol.className = "w3-col";
+        secondCol.style = "width:50%";
+        secondCol.innerHTML = param;
+        row.appendChild(firstCol);
+        row.appendChild(secondCol);
+        parent.appendChild(row);
+    }
+
+    function createSection(name, elemParams) {
+        var section = document.createElement('div');
+        section.className = "w3-container w3-border";
+        section.id = "name";
+        section.innerHTML = "<h3>name</h3>";
+        createInfoElem(section, elemParams[0][0], params.modelname_cpu);
+        createInfoElem(section, "Number of cores", params.cores_cpu);
+        createInfoElem(section, "Manufacturer", params.manufacturer_cpu);
+        createInfoElem(section, "Frequency", params.frequency_cpu + "Ghz");
+        document.getElementById('info').innerHTML = "";
+        document.getElementById('info').appendChild(section);
+    }
+
+    function createInfoHTML(params) {
+        //Create CPU
+        var CPU = document.createElement('div');
+        CPU.className = "w3-container w3-border";
+        CPU.id = "CPU";
+        CPU.innerHTML = "<h3>CPU</h3>";
+        createInfoElem(CPU, "Model name", params.modelname_cpu);
+        createInfoElem(CPU, "Number of cores", params.cores_cpu);
+        createInfoElem(CPU, "Manufacturer", params.manufacturer_cpu);
+        createInfoElem(CPU, "Frequency", params.frequency_cpu + "Ghz");
+        document.getElementById('info').innerHTML = "";
+        document.getElementById('info').appendChild(CPU);
+        //create disk
+        var disk = document.createElement('div');
+        CPU.className = "w3-container w3-border";
+        CPU.id = "CPU";
+        CPU.innerHTML = "<h3>CPU</h3>";
+        createInfoElem(CPU, "Model name", params.modelname_cpu);
+        createInfoElem(CPU, "Number of cores", params.cores_cpu);
+        createInfoElem(CPU, "Manufacturer", params.manufacturer_cpu);
+        createInfoElem(CPU, "Frequency", params.frequency_cpu + "Ghz");
+        document.getElementById('info').innerHTML = "";
+        document.getElementById('info').appendChild(CPU);
+    }
+
     function getInfo() {
 
-        var xhr = new XMLHttpRequest();
-
+        var getCurrentUsage = new XMLHttpRequest();
 
         var params = 'machineID=' + encodeURIComponent(document.getElementById("idInput").value);
 
-        xhr.open('GET', 'getInfo?' + params, true);
+        getCurrentUsage.open('GET', 'getCurrentUsage?' + params, true);
 
-        xhr.onreadystatechange = function () {
-            if (xhr.status == 200) {
-                console.log(xhr.responseText);
-                var info = JSON.parse(xhr.responseText, function (key, value) {
+        getCurrentUsage.onreadystatechange = function () {
+            if (getCurrentUsage.status == 200) {
+                console.log(getCurrentUsage.responseText);
+                var info = JSON.parse(getCurrentUsage.responseText, function (key, value) {
                     if (key == 'datatime') return new Date(value);
                     return value;
                 });
@@ -132,8 +191,34 @@
             usage.style = 'width:' + data + '%';
         }
 
-//        var input = document.getElementById("idInput");
+        getCurrentUsage.send();
 
-        xhr.send();
+        var getMachineInfo = new XMLHttpRequest();
+
+        var params = 'machineID=' + encodeURIComponent(document.getElementById("idInput").value);
+
+        getMachineInfo.open('GET', 'getMachineInfo?' + params, true);
+
+        getMachineInfo.onreadystatechange = function () {
+            if (getMachineInfo.status == 200) {
+                console.log(getMachineInfo.responseText);
+                var info = JSON.parse(getMachineInfo.responseText, function (key, value) {
+                    if (key == 'datatime') return new Date(value);
+                    return value;
+                });
+                //changeInfo("cpuModel", info.modelname_cpu);
+                createInfoHTML(info);
+            } else {
+                console.log("error");
+            }
+
+        };
+
+        function changeInfo(id, data) {
+            var info = document.getElementById(id);
+            info.innerHTML = data;
+        }
+
+        getMachineInfo.send();
     }
 </script>
