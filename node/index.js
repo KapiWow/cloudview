@@ -1,5 +1,7 @@
 var http = require('http');
 var nodeStatic = require('node-static');
+url = require("url");
+qs = require("querystring");
 var file = new nodeStatic.Server('./..');
 
 //postgres
@@ -11,13 +13,13 @@ const client = new Client({
 });
 client.connect();
 
-
-
 function accept(req, res) {
-    if (req.url === '/getInfo') {
+    var query = url.parse(req.url).query,
+        params = qs.parse(query);
+    var type = req.url.split('?')[0];
+    if (type === '/getInfo') {
         // console.log('getInfoServer');
-        client.query('SELECT * FROM usage', (err, resDB) => {
-            // console.log(resDB.rows[0].datatime)
+        client.query('SELECT * FROM usage WHERE machineID = ' + params.machineID, (err, resDB) => {
             res.end(JSON.stringify(resDB.rows[0]));
             // console.log(typeof resDB.rows[0].datatime);
             // console.log(typeof resDB.rows[0].cpu);

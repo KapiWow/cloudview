@@ -5,36 +5,97 @@
 </header>
 <!--Usage statistic-->
 <div class="w3-container w3-margin">
+    <input id="idInput" class="w3-input w3-margin" type="text">
     <p>
-        <button id ="123" class="w3-button w3-black w3-round" onclick="getInfo()">search</button>
+        <button class="w3-button w3-black w3-round" onclick="getInfo()">search</button>
     </p>
+
+
+    <div class="w3-col w3-border w3-margin w3-right">
+
+        <!--CPU-->
+        <div class="w3-container w3-border ">
+            <h3>CPU</h3>
+            <div class="w3-container w3-margin ">
+                <label> Number of cores </label>
+            </div>
+            <div class="w3-container w3-margin ">
+                <label> Manufacturer </label>
+            </div>
+            <div class="w3-container w3-margin ">
+                <label> Frequence, Ghz </label>
+            </div>
+        </div>
+
+        <!--Disk-->
+        <div class="w3-container w3-border ">
+            <h3>Disk</h3>
+            <div class="w3-container w3-margin ">
+                <label>Volume</label>
+            </div>
+
+            <div class="w3-container w3-margin ">
+                <label> Type </label>
+            </div>
+
+            <div class="w3-container w3-margin ">
+                <label> Manufacturer </label>
+            </div>
+        </div>
+
+        <!--Memory-->
+        <div class="w3-container w3-border ">
+            <h3>Memory</h3>
+
+            <div class="w3-container w3-margin ">
+                <label>Volume</label>
+            </div>
+
+            <div class="w3-container w3-margin ">
+                <label>Frequency</label>
+            </div>
+        </div>
+
+        <!--Region-->
+        <div class="w3-container w3-border">
+            <h3>Region</h3>
+            <div class="w3-container w3-margin ">
+                <div class="w3-container w3-margin ">
+                    <label> Continent </label>
+                </div>
+                <div class="w3-container w3-margin ">
+                    <label> Country </label>
+                </div>
+                <div class="w3-container w3-margin ">
+                    <label> City </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <h5>Server monitor</h5>
     <p>CPU</p>
     <div class="w3-grey">
-        <div class="w3-container w3-center w3-padding-small w3-green" style="width:36%">36%</div>
+        <div id="cpuUsage" class="w3-container w3-center w3-padding-small w3-green" style="width:76%">76%</div>
     </div>
 
     <p>Memory</p>
     <div class="w3-grey">
-        <div class="w3-container w3-center w3-padding-small w3-orange" style="width:57%">57%</div>
+        <div id="memoryUsage" class="w3-container w3-center w3-padding-small w3-orange" style="width:57%">57%</div>
     </div>
 
     <p>Disk</p>
     <div class="w3-grey">
-        <div class="w3-container w3-center w3-padding-small w3-red" style="width:30%">30%</div>
+        <div id="diskUsage" class="w3-container w3-center w3-padding-small w3-red" style="width:30%">30%</div>
     </div>
 
-    <p>Network</p>
-    <div class="w3-grey">
-        <div class="w3-container w3-center w3-padding-small w3-yellow" style="width:6%">6%</div>
-    </div>
-    <div class="w3-container w3-margin"  id="CPUChart">
+    <div class="w3-container w3-margin" id="CPUChart">
 
     </div>
-    <div class="w3-container w3-margin"  id="MemoryChart">
+    <div class="w3-container w3-margin" id="MemoryChart">
 
     </div>
-    <div class="w3-container w3-margin"  id="DiskChart">
+    <div class="w3-container w3-margin" id="DiskChart">
 
     </div>
 </div>
@@ -44,28 +105,35 @@
 
         var xhr = new XMLHttpRequest();
 
-        xhr.open('GET', 'getInfo', true);
+
+        var params = 'machineID=' + encodeURIComponent(document.getElementById("idInput").value);
+
+        xhr.open('GET', 'getInfo?' + params, true);
 
         xhr.onreadystatechange = function () {
-            if(xhr.status == 200) {
-//                console.log(xhr.);
+            if (xhr.status == 200) {
                 console.log(xhr.responseText);
-                var info = JSON.parse(xhr.responseText, function(key, value) {
+                var info = JSON.parse(xhr.responseText, function (key, value) {
                     if (key == 'datatime') return new Date(value);
                     return value;
                 });
-                console.log(info.datatime);
-                console.log(info.cpu);
-                console.log(info.disk);
-                console.log(info.memory);
-//                var button = document.getElementById("123");
-//                button.innerHTML = "qwe";
+                changeUsage("cpuUsage", info.cpu);
+                changeUsage("memoryUsage", info.memory);
+                changeUsage("diskUsage", info.disk);
             } else {
                 console.log("error");
             }
 
         };
 
-        xhr.send(null);
+        function changeUsage(id, data) {
+            var usage = document.getElementById(id);
+            usage.innerHTML = data + '%';
+            usage.style = 'width:' + data + '%';
+        }
+
+//        var input = document.getElementById("idInput");
+
+        xhr.send();
     }
 </script>
