@@ -5,6 +5,9 @@
 </header>
 <!--Usage statistic-->
 <div class="w3-container w3-margin">
+    <p>
+        <button id ="123" class="w3-button w3-black w3-round" onclick="getInfo()">search</button>
+    </p>
     <h5>Server monitor</h5>
     <p>CPU</p>
     <div class="w3-grey">
@@ -35,3 +38,34 @@
 
     </div>
 </div>
+
+<script>
+    function getInfo() {
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', 'getInfo', true);
+
+        xhr.onreadystatechange = function () {
+            if(xhr.status == 200) {
+//                console.log(xhr.);
+                console.log(xhr.responseText);
+                var info = JSON.parse(xhr.responseText, function(key, value) {
+                    if (key == 'datatime') return new Date(value);
+                    return value;
+                });
+                console.log(info.datatime);
+                console.log(info.cpu);
+                console.log(info.disk);
+                console.log(info.memory);
+//                var button = document.getElementById("123");
+//                button.innerHTML = "qwe";
+            } else {
+                console.log("error");
+            }
+
+        };
+
+        xhr.send(null);
+    }
+</script>
