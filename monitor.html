@@ -5,39 +5,216 @@
 </header>
 <!--Usage statistic-->
 <div class="w3-container w3-margin">
+    <input id="idInput" class="w3-input w3-margin" type="text">
+    <p>
+        <button class="w3-button w3-black w3-round" onclick="getInfo()">search</button>
+    </p>
+
+
+    <div id="info" class="w3-col w3-border w3-margin w3-right">
+
+        <!--&lt;!&ndash;CPU&ndash;&gt;-->
+        <!--<div class="w3-container w3-border ">-->
+            <!--<h3>CPU</h3>-->
+            <!--<div id="123" class="w3-container w3-margin ">-->
+                <!--<div class="w3-row w3-margin">-->
+                    <!--<div class="w3-col" style="width:20%"> Model name</div>-->
+                    <!--<div id="cpuModel" class="w3-col" style="width:80%"> Intel asdfasdf</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="w3-container w3-margin ">-->
+                <!--<label id="cpuCores"> Number of cores </label>-->
+            <!--</div>-->
+            <!--<div class="w3-container w3-margin ">-->
+                <!--<label id="cpuManufacturer"> Manufacturer </label>-->
+            <!--</div>-->
+            <!--<div class="w3-container w3-margin ">-->
+                <!--<label id="cpuFrequency"> Frequency, Ghz </label>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash;Disk&ndash;&gt;-->
+        <!--<div class="w3-container w3-border ">-->
+            <!--<h3>Disk</h3>-->
+            <!--<div class="w3-container w3-margin ">-->
+                <!--<label> Model name </label>-->
+            <!--</div>-->
+            <!--<div class="w3-container w3-margin ">-->
+                <!--<label>Volume</label>-->
+            <!--</div>-->
+            <!--<div class="w3-container w3-margin ">-->
+                <!--<label> Type </label>-->
+            <!--</div>-->
+            <!--<div class="w3-container w3-margin ">-->
+                <!--<label> Manufacturer </label>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash;Memory&ndash;&gt;-->
+        <!--<div class="w3-container w3-border ">-->
+            <!--<h3>Memory</h3>-->
+            <!--<div class="w3-container w3-margin ">-->
+                <!--<label> Model name </label>-->
+            <!--</div>-->
+            <!--<div class="w3-container w3-margin ">-->
+                <!--<label>Volume</label>-->
+            <!--</div>-->
+            <!--<div class="w3-container w3-margin ">-->
+                <!--<label>Frequency</label>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash;Region&ndash;&gt;-->
+        <!--<div class="w3-container w3-border">-->
+            <!--<h3>Region</h3>-->
+            <!--<div class="w3-container w3-margin ">-->
+                <!--<label> Continent </label>-->
+            <!--</div>-->
+            <!--<div class="w3-container w3-margin ">-->
+                <!--<label> Country </label>-->
+            <!--</div>-->
+            <!--<div class="w3-container w3-margin ">-->
+                <!--<label> City </label>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+
     <h5>Server monitor</h5>
     <p>CPU</p>
     <div class="w3-grey">
-        <div class="w3-container w3-center w3-padding-small w3-green" style="width:36%">36%</div>
+        <div id="cpuUsage" class="w3-container w3-center w3-padding-small w3-green" style="width:76%">76%</div>
     </div>
 
     <p>Memory</p>
     <div class="w3-grey">
-        <div class="w3-container w3-center w3-padding-small w3-orange" style="width:57%">57%</div>
+        <div id="memoryUsage" class="w3-container w3-center w3-padding-small w3-orange" style="width:57%">57%</div>
     </div>
 
     <p>Disk</p>
     <div class="w3-grey">
-        <div class="w3-container w3-center w3-padding-small w3-red" style="width:30%">30%</div>
+        <div id="diskUsage" class="w3-container w3-center w3-padding-small w3-red" style="width:30%">30%</div>
     </div>
 
-    <p>Network</p>
-    <div class="w3-grey">
-        <div class="w3-container w3-center w3-padding-small w3-yellow" style="width:6%">6%</div>
-    </div>
-    <div class="w3-container w3-margin"  id="CPUChart">
+    <div class="w3-container w3-margin" id="CPUChart">
 
     </div>
-    <div class="w3-container w3-margin"  id="MemoryChart">
+    <div class="w3-container w3-margin" id="MemoryChart">
 
     </div>
-    <div class="w3-container w3-margin"  id="DiskChart">
+    <div class="w3-container w3-margin" id="DiskChart">
 
     </div>
 </div>
 
-<!-- Footer -->
-<!--<footer class="w3-container w3-padding-16 w3-light-grey">-->
-    <!--<p>Powered by Kapi</a></p>-->
-<!--</footer>-->
-<!-- End page content -->
+<script>
+    function createInfoElem(parent, name, param) {
+        var row = document.createElement('div');
+        row.className = "w3-row w3-margin";
+        var firstCol = document.createElement('div'),
+            secondCol = document.createElement('div');
+        firstCol.className = "w3-col";
+        firstCol.style = "width:20%";
+        firstCol.innerHTML = name;
+        secondCol.className = "w3-col";
+        secondCol.style = "width:50%";
+        secondCol.innerHTML = param;
+        row.appendChild(firstCol);
+        row.appendChild(secondCol);
+        parent.appendChild(row);
+    }
+
+    function createSection(name, elemParams) {
+        var section = document.createElement('div');
+        section.className = "w3-container w3-border";
+        section.id = name;
+        section.innerHTML = "<h3>" + name + "</h3>";
+        for (var i = 0; i < elemParams.length; i++)
+            createInfoElem(section, elemParams[i][0], elemParams[i][1]);
+        document.getElementById('info').appendChild(section);
+    }
+
+    function createInfoHTML(params) {
+        document.getElementById('info').innerHTML = "";
+        createSection('CPU',[
+            ["Model name", params.modelname_cpu],
+            ["Number of cores", params.cores_cpu],
+            ["Manufacturer", params.manufacturer_cpu],
+            ["Frequency", params.frequency_cpu + "Ghz"]]);
+
+        createSection('Disk',[
+            ["Model name", params.modelname_disk],
+            ["Volume", params.volume_disk + "Gb"],
+            ["Type", params.type_disk]]);
+
+        createSection('Memory',[
+            ["Model name", params.modelname_memory],
+            ["Volume", params.volume_memory + "Gb"],
+            ["Frequency", params.frequency_memory]]);
+
+        createSection('Region',[
+            ["Continent", params.continent],
+            ["Country", params.country],
+            ["City", params.city]]);
+    }
+
+    function getInfo() {
+
+        var getCurrentUsage = new XMLHttpRequest();
+
+        var params = 'machineID=' + encodeURIComponent(document.getElementById("idInput").value);
+
+        getCurrentUsage.open('GET', 'getCurrentUsage?' + params, true);
+
+        getCurrentUsage.onreadystatechange = function () {
+            if (getCurrentUsage.status == 200) {
+                console.log(getCurrentUsage.responseText);
+                var info = JSON.parse(getCurrentUsage.responseText, function (key, value) {
+                    if (key == 'datatime') return new Date(value);
+                    return value;
+                });
+                changeUsage("cpuUsage", info.cpu);
+                changeUsage("memoryUsage", info.memory);
+                changeUsage("diskUsage", info.disk);
+            } else {
+                console.log("error");
+            }
+
+        };
+
+        function changeUsage(id, data) {
+            var usage = document.getElementById(id);
+            usage.innerHTML = data + '%';
+            usage.style = 'width:' + data + '%';
+        }
+
+        getCurrentUsage.send();
+
+        var getMachineInfo = new XMLHttpRequest();
+
+        var params = 'machineID=' + encodeURIComponent(document.getElementById("idInput").value);
+
+        getMachineInfo.open('GET', 'getMachineInfo?' + params, true);
+
+        getMachineInfo.onreadystatechange = function () {
+            if (getMachineInfo.status == 200) {
+                console.log(getMachineInfo.responseText);
+                var info = JSON.parse(getMachineInfo.responseText, function (key, value) {
+                    if (key == 'datatime') return new Date(value);
+                    return value;
+                });
+                //changeInfo("cpuModel", info.modelname_cpu);
+                createInfoHTML(info);
+            } else {
+                console.log("error");
+            }
+
+        };
+
+        function changeInfo(id, data) {
+            var info = document.getElementById(id);
+            info.innerHTML = data;
+        }
+
+        getMachineInfo.send();
+    }
+</script>

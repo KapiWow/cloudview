@@ -1,0 +1,17 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "cloud",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "auth0-js": "^8.11.3",
+    "buffer-alloc": "*",
+    "node-static": "*",
+    "pg": "*"
+  }
+}
