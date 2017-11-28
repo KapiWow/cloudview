@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "auth0-js": "^8.11.3",
     "buffer-alloc": "*",
     "node-static": "*",
     "pg": "*"
