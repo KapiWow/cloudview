@@ -6,7 +6,8 @@ var file = new nodeStatic.Server('./..');
 
 //postgres
 const {Client} = require('pg');
-const connectionString = 'postgresql://cloud_user:1349@localhost:5432/cloud';
+const connectionString =
+    'postgres://koytekka:lgvzHyahrH3XeqlG02BF6Aan98c7u53u@baasu.db.elephantsql.com:5432/koytekka';
 
 const client = new Client({
     connectionString: connectionString
@@ -27,7 +28,7 @@ function accept(req, res) {
         })
     } else if (type === '/getMachineInfo') {
         // console.log('getInfoServer');
-        client.query('SELECT * FROM allInfo2 WHERE machineID = ' + params.machineID, (err, resDB) => {
+        client.query('SELECT * FROM allInfo WHERE machineID = ' + params.machineID, (err, resDB) => {
             res.end(JSON.stringify(resDB.rows[0]));
         // console.log(typeof resDB.rows[0].datatime);
         // console.log(typeof resDB.rows[0].cpu);

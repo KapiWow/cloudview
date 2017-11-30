@@ -13,70 +13,6 @@
 
     <div id="info" class="w3-col w3-border w3-margin w3-right">
 
-        <!--&lt;!&ndash;CPU&ndash;&gt;-->
-        <!--<div class="w3-container w3-border ">-->
-            <!--<h3>CPU</h3>-->
-            <!--<div id="123" class="w3-container w3-margin ">-->
-                <!--<div class="w3-row w3-margin">-->
-                    <!--<div class="w3-col" style="width:20%"> Model name</div>-->
-                    <!--<div id="cpuModel" class="w3-col" style="width:80%"> Intel asdfasdf</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="w3-container w3-margin ">-->
-                <!--<label id="cpuCores"> Number of cores </label>-->
-            <!--</div>-->
-            <!--<div class="w3-container w3-margin ">-->
-                <!--<label id="cpuManufacturer"> Manufacturer </label>-->
-            <!--</div>-->
-            <!--<div class="w3-container w3-margin ">-->
-                <!--<label id="cpuFrequency"> Frequency, Ghz </label>-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <!--&lt;!&ndash;Disk&ndash;&gt;-->
-        <!--<div class="w3-container w3-border ">-->
-            <!--<h3>Disk</h3>-->
-            <!--<div class="w3-container w3-margin ">-->
-                <!--<label> Model name </label>-->
-            <!--</div>-->
-            <!--<div class="w3-container w3-margin ">-->
-                <!--<label>Volume</label>-->
-            <!--</div>-->
-            <!--<div class="w3-container w3-margin ">-->
-                <!--<label> Type </label>-->
-            <!--</div>-->
-            <!--<div class="w3-container w3-margin ">-->
-                <!--<label> Manufacturer </label>-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <!--&lt;!&ndash;Memory&ndash;&gt;-->
-        <!--<div class="w3-container w3-border ">-->
-            <!--<h3>Memory</h3>-->
-            <!--<div class="w3-container w3-margin ">-->
-                <!--<label> Model name </label>-->
-            <!--</div>-->
-            <!--<div class="w3-container w3-margin ">-->
-                <!--<label>Volume</label>-->
-            <!--</div>-->
-            <!--<div class="w3-container w3-margin ">-->
-                <!--<label>Frequency</label>-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <!--&lt;!&ndash;Region&ndash;&gt;-->
-        <!--<div class="w3-container w3-border">-->
-            <!--<h3>Region</h3>-->
-            <!--<div class="w3-container w3-margin ">-->
-                <!--<label> Continent </label>-->
-            <!--</div>-->
-            <!--<div class="w3-container w3-margin ">-->
-                <!--<label> Country </label>-->
-            <!--</div>-->
-            <!--<div class="w3-container w3-margin ">-->
-                <!--<label> City </label>-->
-            <!--</div>-->
-        <!--</div>-->
     </div>
 
     <h5>Server monitor</h5>
@@ -135,23 +71,23 @@
 
     function createInfoHTML(params) {
         document.getElementById('info').innerHTML = "";
-        createSection('CPU',[
+        createSection('CPU', [
             ["Model name", params.modelname_cpu],
             ["Number of cores", params.cores_cpu],
             ["Manufacturer", params.manufacturer_cpu],
             ["Frequency", params.frequency_cpu + "Ghz"]]);
 
-        createSection('Disk',[
+        createSection('Disk', [
             ["Model name", params.modelname_disk],
             ["Volume", params.volume_disk + "Gb"],
             ["Type", params.type_disk]]);
 
-        createSection('Memory',[
+        createSection('Memory', [
             ["Model name", params.modelname_memory],
             ["Volume", params.volume_memory + "Gb"],
             ["Frequency", params.frequency_memory]]);
 
-        createSection('Region',[
+        createSection('Region', [
             ["Continent", params.continent],
             ["Country", params.country],
             ["City", params.city]]);
@@ -191,11 +127,15 @@
 
         var getMachineInfo = new XMLHttpRequest();
 
-        var params = 'machineID=' + encodeURIComponent(document.getElementById("idInput").value);
+        var params =  encodeURIComponent(document.getElementById("idInput").value);
 
-        getMachineInfo.open('GET', 'getMachineInfo?' + params, true);
+        getMachineInfo.open('GET',
+        'https://cloudviewkapi.azurewebsites.net/api/HttpTriggerJS/name/'+params+'?code=3BYxXhfxZDiaVCZCXlIaLw9uQIkzarF/wwcDidN74AI/aAtzrIvJBQ==',
+            true);
 
-        getMachineInfo.onreadystatechange = function () {
+        getMachineInfo.onreadystatechange  = function () {
+            console.log("123");
+            console.log(getMachineInfo.responseText);
             if (getMachineInfo.status == 200) {
                 console.log(getMachineInfo.responseText);
                 var info = JSON.parse(getMachineInfo.responseText, function (key, value) {
@@ -209,7 +149,7 @@
             }
 
         };
-
+        
         function changeInfo(id, data) {
             var info = document.getElementById(id);
             info.innerHTML = data;
