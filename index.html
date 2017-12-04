@@ -4,9 +4,9 @@
     <title>CloudView</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" src="node/node_modules/auth0-js/build/auth0.js"></script>
+    <script type="text/javascript" src="https://cdn.auth0.com/js/auth0/8.10.1/auth0.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -21,16 +21,8 @@
 <body class="w3-light-grey">
 
 <script>
-    function isAuthenticated() {
-        // Check whether the current time is past the
-        // access token's expiry time
-        var expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-        return new Date().getTime() < expiresAt;
-    }
 
     window.addEventListener('load', function () {
-//        Console.log("123");
-        var authorized = false;
         var webAuth = new auth0.WebAuth({
             domain: 'kapiwow.eu.auth0.com',
             clientID: 'siHY5FdUCzyQqExU2CXS4D6jtonsfnNy',
@@ -40,6 +32,12 @@
             redirectUri: window.location.href
         });
 
+        var loginBtn = document.getElementById('btn-login');
+
+        loginBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            webAuth.authorize();
+        });
         var loginStatus = document.querySelector('.container h4');
         var loginView = document.getElementById('login-view');
         var homeView = document.getElementById('home-view');
@@ -111,14 +109,11 @@
                     'You are not logged in! Please log in to continue.';
             }
         }
-        }
-//        var loginBtn = document.getElementById('btn-login');
-//
-//        loginBtn.addEventListener('click', function (e) {
-//            e.preventDefault();
-//            webAuth.authorize();
-//        });
+
+        handleAuthentication();
     });
+
+
 
     function clearBar() {
         userBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
@@ -137,6 +132,29 @@
 </div>
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:200px;" id="mySidebar"><br>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Auth0 - JavaScript</a>
+
+                <button id="btn-home-view" class="btn btn-primary btn-margin">
+                    Home
+                </button>
+
+                <button id="btn-login" class="btn btn-primary btn-margin">
+                    Log In
+                </button>
+
+                <button id="btn-logout" class="btn btn-primary btn-margin">
+                    Log Out
+                </button>
+
+            </div>
+        </div>
+    </nav>
+    <div id="home-view">
+        <h4></h4>
+    </div>
     <div class="w3-container">
         <h5>Dashboard</h5>
     </div>
@@ -214,10 +232,6 @@
     </script>
 
 
-</div>
-
-<div style="margin-left:200px;margin-top:43px;" >
-    <button id="btn-login" class="w3-button w3-black w3-round ">log in</button>
 </div>
 
 <script>
