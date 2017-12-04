@@ -34,28 +34,28 @@
 
         var loginBtn = document.getElementById('btn-login');
 
-        loginBtn.addEventListener('click', function(e) {
+        loginBtn.addEventListener('click', function (e) {
             e.preventDefault();
             webAuth.authorize();
         });
-        var loginStatus = document.querySelector('.container h4');
-        var loginView = document.getElementById('login-view');
-        var homeView = document.getElementById('home-view');
+//        var loginStatus = document.querySelector('.container h4');
+//        var loginView = document.getElementById('login-view');
+//        var homeView = document.getElementById('home-view');
 
         // buttons and event listeners
-        var homeViewBtn = document.getElementById('btn-home-view');
+//        var homeViewBtn = document.getElementById('btn-home-view');
         var loginBtn = document.getElementById('btn-login');
         var logoutBtn = document.getElementById('btn-logout');
 
-        homeViewBtn.addEventListener('click', function() {
-            homeView.style.display = 'inline-block';
-            loginView.style.display = 'none';
-        });
+//        homeViewBtn.addEventListener('click', function () {
+//            homeView.style.display = 'inline-block';
+//            loginView.style.display = 'none';
+//        });
 
         logoutBtn.addEventListener('click', logout);
 
         function handleAuthentication() {
-            webAuth.parseHash(function(err, authResult) {
+            webAuth.parseHash(function (err, authResult) {
                 if (authResult && authResult.accessToken && authResult.idToken) {
                     window.location.hash = '';
                     setSession(authResult);
@@ -101,18 +101,17 @@
             if (isAuthenticated()) {
                 loginBtn.style.display = 'none';
                 logoutBtn.style.display = 'inline-block';
-                loginStatus.innerHTML = 'You are logged in!';
+//                loginStatus.innerHTML = 'You are logged in!';
             } else {
                 loginBtn.style.display = 'inline-block';
                 logoutBtn.style.display = 'none';
-                loginStatus.innerHTML =
-                    'You are not logged in! Please log in to continue.';
+//                loginStatus.innerHTML =
+//                    'You are not logged in! Please log in to continue.';
             }
         }
 
         handleAuthentication();
     });
-
 
 
     function clearBar() {
@@ -125,36 +124,42 @@
 
 <!-- Top container -->
 <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
-    <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i
-            class="fa fa-bars"></i> Menu
+    <button id="btn-home-view" class="btn btn-primary btn-margin w3-hide-large">
+        Home
+    </button>
+    <button id="btn-login" class="w3-bar-item w3-button w3-hover-none w3-hover-text-light-grey"><i
+            class="fa fa-bars"></i> login
+    </button>
+    <button id="btn-logout" class="w3-bar-item w3-button w3-hover-none w3-hover-text-light-grey"><i
+            class="fa fa-bars"></i> logout
     </button>
     <span class="w3-bar-item w3-right">CloudView</span>
 </div>
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:200px;" id="mySidebar"><br>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Auth0 - JavaScript</a>
+    <!--<nav class="navbar navbar-default">-->
+        <!--<div class="container-fluid">-->
+            <!--<div class="navbar-header">-->
+                <!--<a class="navbar-brand" href="#">Auth0 - JavaScript</a>-->
 
-                <button id="btn-home-view" class="btn btn-primary btn-margin">
-                    Home
-                </button>
+                <!--&lt;!&ndash;<button id="btn-home-view" class="btn btn-primary btn-margin">&ndash;&gt;-->
+                    <!--&lt;!&ndash;Home&ndash;&gt;-->
+                <!--&lt;!&ndash;</button>&ndash;&gt;-->
 
-                <button id="btn-login" class="btn btn-primary btn-margin">
-                    Log In
-                </button>
+                <!--&lt;!&ndash;<button id="btn-login" class="btn btn-primary btn-margin">&ndash;&gt;-->
+                    <!--&lt;!&ndash;Log In&ndash;&gt;-->
+                <!--&lt;!&ndash;</button>&ndash;&gt;-->
 
-                <button id="btn-logout" class="btn btn-primary btn-margin">
-                    Log Out
-                </button>
+                <!--&lt;!&ndash;<button id="btn-logout" class="btn btn-primary btn-margin">&ndash;&gt;-->
+                    <!--&lt;!&ndash;Log Out&ndash;&gt;-->
+                <!--&lt;!&ndash;</button>&ndash;&gt;-->
 
-            </div>
-        </div>
-    </nav>
-    <div id="home-view">
-        <h4></h4>
-    </div>
+            <!--</div>-->
+        <!--</div>-->
+    <!--</nav>-->
+    <!--<div id="home-view">-->
+        <!--<h4></h4>-->
+    <!--</div>-->
     <div class="w3-container">
         <h5>Dashboard</h5>
     </div>
