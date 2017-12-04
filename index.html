@@ -7,6 +7,8 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="https://cdn.auth0.com/js/auth0/8.10.1/auth0.min.js"></script>
+    <script type="text/javascript" src="scripts/authentication.js"></script>
+    <script type="text/javascript" src="scripts/bar.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -17,149 +19,20 @@
     }
 </style>
 
-
 <body class="w3-light-grey">
-
-<script>
-
-    window.addEventListener('load', function () {
-        var webAuth = new auth0.WebAuth({
-            domain: 'kapiwow.eu.auth0.com',
-            clientID: 'siHY5FdUCzyQqExU2CXS4D6jtonsfnNy',
-            responseType: 'token id_token',
-            audience: 'https://kapiwow.eu.auth0.com/userinfo',
-            scope: 'openid',
-            redirectUri: window.location.href
-        });
-
-        var loginBtn = document.getElementById('btn-login');
-
-        loginBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            webAuth.authorize();
-        });
-//        var loginStatus = document.querySelector('.container h4');
-//        var loginView = document.getElementById('login-view');
-//        var homeView = document.getElementById('home-view');
-
-        // buttons and event listeners
-//        var homeViewBtn = document.getElementById('btn-home-view');
-        var loginBtn = document.getElementById('btn-login');
-        var logoutBtn = document.getElementById('btn-logout');
-
-//        homeViewBtn.addEventListener('click', function () {
-//            homeView.style.display = 'inline-block';
-//            loginView.style.display = 'none';
-//        });
-
-        logoutBtn.addEventListener('click', logout);
-
-        function handleAuthentication() {
-            webAuth.parseHash(function (err, authResult) {
-                if (authResult && authResult.accessToken && authResult.idToken) {
-                    window.location.hash = '';
-                    setSession(authResult);
-                    loginBtn.style.display = 'none';
-                    homeView.style.display = 'inline-block';
-                } else if (err) {
-                    homeView.style.display = 'inline-block';
-                    console.log(err);
-                    alert(
-                        'Error: ' + err.error + '. Check the console for further details.'
-                    );
-                }
-                displayButtons();
-            });
-        }
-
-        function setSession(authResult) {
-            // Set the time that the access token will expire at
-            var expiresAt = JSON.stringify(
-                authResult.expiresIn * 1000 + new Date().getTime()
-            );
-            localStorage.setItem('access_token', authResult.accessToken);
-            localStorage.setItem('id_token', authResult.idToken);
-            localStorage.setItem('expires_at', expiresAt);
-        }
-
-        function logout() {
-            // Remove tokens and expiry time from localStorage
-            localStorage.removeItem('access_token');
-            localStorage.removeItem('id_token');
-            localStorage.removeItem('expires_at');
-            displayButtons();
-        }
-
-        function isAuthenticated() {
-            // Check whether the current time is past the
-            // access token's expiry time
-            var expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-            return new Date().getTime() < expiresAt;
-        }
-
-        function displayButtons() {
-            if (isAuthenticated()) {
-                loginBtn.style.display = 'none';
-                logoutBtn.style.display = 'inline-block';
-//                loginStatus.innerHTML = 'You are logged in!';
-            } else {
-                loginBtn.style.display = 'inline-block';
-                logoutBtn.style.display = 'none';
-//                loginStatus.innerHTML =
-//                    'You are not logged in! Please log in to continue.';
-            }
-        }
-
-        handleAuthentication();
-    });
-
-
-    function clearBar() {
-        userBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
-        serverBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
-        statBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
-        monitorBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
-    }
-</script>
 
 <!-- Top container -->
 <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
-    <button id="btn-home-view" class="btn btn-primary btn-margin w3-hide-large">
-        Home
-    </button>
     <button id="btn-login" class="w3-bar-item w3-button w3-hover-none w3-hover-text-light-grey"><i
-            class="fa fa-bars"></i> login
+            class="fa fa-users fa-fw"></i> login
     </button>
     <button id="btn-logout" class="w3-bar-item w3-button w3-hover-none w3-hover-text-light-grey"><i
-            class="fa fa-bars"></i> logout
+            class="fa fa-users fa-fw"></i> logout
     </button>
     <span class="w3-bar-item w3-right">CloudView</span>
 </div>
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:200px;" id="mySidebar"><br>
-    <!--<nav class="navbar navbar-default">-->
-        <!--<div class="container-fluid">-->
-            <!--<div class="navbar-header">-->
-                <!--<a class="navbar-brand" href="#">Auth0 - JavaScript</a>-->
-
-                <!--&lt;!&ndash;<button id="btn-home-view" class="btn btn-primary btn-margin">&ndash;&gt;-->
-                    <!--&lt;!&ndash;Home&ndash;&gt;-->
-                <!--&lt;!&ndash;</button>&ndash;&gt;-->
-
-                <!--&lt;!&ndash;<button id="btn-login" class="btn btn-primary btn-margin">&ndash;&gt;-->
-                    <!--&lt;!&ndash;Log In&ndash;&gt;-->
-                <!--&lt;!&ndash;</button>&ndash;&gt;-->
-
-                <!--&lt;!&ndash;<button id="btn-logout" class="btn btn-primary btn-margin">&ndash;&gt;-->
-                    <!--&lt;!&ndash;Log Out&ndash;&gt;-->
-                <!--&lt;!&ndash;</button>&ndash;&gt;-->
-
-            <!--</div>-->
-        <!--</div>-->
-    <!--</nav>-->
-    <!--<div id="home-view">-->
-        <!--<h4></h4>-->
-    <!--</div>-->
     <div class="w3-container">
         <h5>Dashboard</h5>
     </div>
@@ -167,7 +40,7 @@
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"
            onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i> Close Menu </a>
         <a href="#1" id="userBar" onclick="barClick(this,1); return false;"
-           class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i> User </a>
+           class="w3-bar-item w3-button w3-padding w3-blue w3-hide"><i class="fa fa-users fa-fw"></i> User </a>
         <a href="#2" id="serverBar" onclick="barClick(this,2); return false;"
            class="w3-bar-item w3-button w3-padding"><i class="fa fa-align-justify fa-fw"></i> Server </a>
         <a href="#3" id="statBar" onclick="barClick(this,3); return false;"
@@ -183,86 +56,7 @@
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:200px;margin-top:43px;" id="content">
-    <script>
-        $(document).ready(function () {
-            $.ajax({
-                url: "user.html",
-                cache: false,
-                success: function (html) {
-                    $("#content").html(html);
-                }
-            });
-        });
-
-        function barClick(sender, barID) {
-            urlName = "";
-            bar = userBar;
-            switch (barID) {
-                case 1:
-                    urlName = "user.html";
-                    bar = userBar;
-                    break;
-                case 2:
-                    urlName = "server.html";
-                    bar = serverBar;
-                    break;
-                case 3:
-                    urlName = "stat.html";
-                    bar = statBar;
-                    break;
-                case 4:
-                    urlName = "history.html";
-                    bar = historyBar;
-                    break;
-                case 5:
-                    urlName = "monitor.html";
-                    bar = monitorBar;
-                    break;
-                default:
-                    break;
-            }
-            $(document).ready(function () {
-                $.ajax({
-                    url: urlName,
-                    cache: false,
-                    success: function (html) {
-                        $("#content").html(html);
-                    }
-                });
-            });
-            clearBar();
-            bar.setAttribute('class', "w3-bar-item w3-button w3-padding w3-blue");
-        }
-
-    </script>
-
-
 </div>
-
-<script>
-    // Get the Sidebar
-    var mySidebar = document.getElementById("mySidebar");
-
-    // Get the DIV with overlay effect
-    var overlayBg = document.getElementById("myOverlay");
-
-    // Toggle between showing and hiding the sidebar, and add overlay effect
-    function w3_open() {
-        if (mySidebar.style.display === 'block') {
-            mySidebar.style.display = 'none';
-            overlayBg.style.display = "none";
-        } else {
-            mySidebar.style.display = 'block';
-            overlayBg.style.display = "block";
-        }
-    }
-
-    // Close the sidebar with the close button
-    function w3_close() {
-        mySidebar.style.display = "none";
-        overlayBg.style.display = "none";
-    }
-</script>
 
 </body>
 </html>
