@@ -87,7 +87,6 @@ function getInfo() {
 
     getMachineInfo.open('GET',
         'https://cloudviewkapi.azurewebsites.net/api/getMachineInfo/id/'+params+'?code=3BYxXhfxZDiaVCZCXlIaLw9uQIkzarF/wwcDidN74AI/aAtzrIvJBQ==',
-//            'https://cloudviewkapi.azurewebsites.net/api/HttpTriggerJS/name/'+params+'?code=3BYxXhfxZDiaVCZCXlIaLw9uQIkzarF/wwcDidN74AI/aAtzrIvJBQ==',
         true);
 
     getMachineInfo.onreadystatechange  = function () {

@@ -1,5 +1,5 @@
 function clearBar() {
-    userBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
+    // userBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
     serverBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
     statBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
     monitorBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
@@ -7,7 +7,7 @@ function clearBar() {
 
 $(document).ready(function () {
     $.ajax({
-        url: "user.html",
+        url: "monitor.html",
         cache: false,
         success: function (html) {
             $("#content").html(html);
@@ -17,12 +17,8 @@ $(document).ready(function () {
 
 function barClick(sender, barID) {
     urlName = "";
-    bar = userBar;
+    bar = monitorBar;
     switch (barID) {
-        case 1:
-            urlName = "user.html";
-            bar = userBar;
-            break;
         case 2:
             urlName = "server.html";
             bar = serverBar;
