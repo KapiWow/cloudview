@@ -9,22 +9,22 @@ google.charts.setOnLoadCallback(drawCPUChart);
 // draws it.
 function drawCPUChart() {
 
-    var getMachineInfo = new XMLHttpRequest();
+    var CPUChart = new XMLHttpRequest();
 
-    getMachineInfo.open('GET',
-        'https://cloudviewkapi.azurewebsites.net/api/getCharts?code=w7sR6u/N/nqSM3foecfC8gJxyPdaabRk2Hvlq0FY8SPF6J0wtG7CCQ==',
+    CPUChart.open('GET',
+        'https://cloudviewkapi.azurewebsites.net/api/getCharts/CPU?code=w7sR6u/N/nqSM3foecfC8gJxyPdaabRk2Hvlq0FY8SPF6J0wtG7CCQ==',
         true);
 
 
-    getMachineInfo.onreadystatechange = function () {
+    CPUChart.onreadystatechange = function () {
         var Intel = 0;
         var all = 0;
-        if (getMachineInfo.status == 200) {
-            var info = JSON.parse(getMachineInfo.responseText, function (key, value) {
+        if (CPUChart.status == 200) {
+            var info = JSON.parse(CPUChart.responseText, function (key, value) {
                 if (key == 'datatime') return new Date(value);
                 return value;
             });
-            console.log(info);
+            //console.log(info);
             Intel =  parseInt(info.intel);
             all = parseInt(info.allcpu);
 
@@ -32,8 +32,6 @@ function drawCPUChart() {
         } else {
             console.log("error");
         }
-        console.log(Intel);
-        console.log(all);
         // Create the data table.
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Topping');
@@ -47,7 +45,7 @@ function drawCPUChart() {
         var options = {
             'title': 'CPU',
             'width': getComputedStyle(CPU_div).width,
-            'height': 400
+            'height': parseInt(getComputedStyle(CPU_div).width)*0.7
         };
 
         // Instantiate and draw our chart, passing in some options.
@@ -55,6 +53,50 @@ function drawCPUChart() {
         chart.draw(data, options);
     };
 
-    getMachineInfo.send();
+    CPUChart.send();
+
+    var locationChart = new XMLHttpRequest();
+
+    locationChart.open('GET',
+        'https://cloudviewkapi.azurewebsites.net/api/getCharts/location?code=w7sR6u/N/nqSM3foecfC8gJxyPdaabRk2Hvlq0FY8SPF6J0wtG7CCQ==',
+        true);
+
+
+    locationChart.onreadystatechange = function () {
+        var Intel = 0;
+        var all = 0;
+        if (locationChart.status == 200) {
+            var info = JSON.parse(locationChart.responseText, function (key, value) {
+                if (key == 'datatime') return new Date(value);
+                return value;
+            });
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', 'Slices');
+            data.addRows([
+                [info[0].city, parseInt(info[0].count)],
+                [info[1].city, parseInt(info[1].count)],
+                [info[2].city, parseInt(info[2].count)]
+            ]);
+
+            // Set chart options
+            var options = {
+                'title': 'Location',
+                'width': getComputedStyle(CPU_div).width,
+                'height': parseInt(getComputedStyle(CPU_div).width)*0.7
+            };
+            console.log(parseInt(getComputedStyle(CPU_div).width)*0.7);
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+
+        } else {
+            console.log("error");
+        }
+
+    };
+
+    locationChart.send();
 
 }

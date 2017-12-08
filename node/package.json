@@ -13,5 +13,8 @@
     "buffer-alloc": "*",
     "node-static": "*",
     "pg": "*"
+  },
+  "devDependencies": {
+    "jasmine": "^2.8.0"
   }
 }

@@ -27,10 +27,6 @@ function barClick(sender, barID) {
             urlName = "stat.html";
             bar = statBar;
             break;
-        case 4:
-            urlName = "history.html";
-            bar = historyBar;
-            break;
         case 5:
             urlName = "monitor.html";
             bar = monitorBar;
