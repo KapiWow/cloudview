@@ -12,5 +12,6 @@ describe("monitor", function() {
         var parent = document.createElement("div");
         createInfoElem(parent,"name","param");
         expect(parent.childNodes[0].childNodes[0].innerHTML).toEqual("name");
+        expect(parent.childNodes[0].childNodes[1].innerHTML).toEqual("param");
     });
 });
