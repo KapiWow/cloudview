@@ -1,3 +1,5 @@
+<script src="scripts/server.js"></script>
+
 <header class="w3-container" style="padding-top:22px">
     <h2><b><i class="fa fa-align-justify"></i> Server</b></h2>
 </header>
@@ -6,19 +8,19 @@
 <div class="w3-row">
     <div class="w3-col" style="width:65%">
         <div class="w3-container w3-margin">
-            <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+            <table id="list" class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
                 <tr>
                     <th>MachineId</th>
                     <th>CPU</th>
                     <th>disk</th>
                     <th>location</th>
                 </tr>
-                <tr>
-                    <td>15</td>
-                    <td>Intel Core i7 Kaby Lake </td>
-                    <td>Seagate STDR2000200</td>
-                    <td>Europe</td>
-                </tr>
+                <!--<tr>-->
+                    <!--<td>15</td>-->
+                    <!--<td>Intel Core i7 Kaby Lake </td>-->
+                    <!--<td>Seagate STDR2000200</td>-->
+                    <!--<td>Europe</td>-->
+                <!--</tr>-->
             </table>
         </div>
     </div>
@@ -28,37 +30,40 @@
             <h3>CPU</h3>
             <div class="w3-container w3-margin ">
                 <label> Number of cores </label>
-                <select class="w3-select w3-bordered" name="option">
+                <select id="cores" class="w3-select w3-bordered" name="option">
                     <option value="" disabled selected>Choose cores count</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">4</option>
+                    <option value="4">8</option>
+                    <option selected value="5">Any</option>
                 </select>
             </div>
             <div class="w3-container w3-margin ">
                 <label> Manufacturer </label>
-                <select class="w3-select w3-bordered" name="option">
+                <select id="manufacturer" class="w3-select w3-bordered" name="option">
                     <option value="" disabled selected>Choose CPU manufacturer</option>
                     <option value="1">Intel</option>
                     <option value="2">AMD</option>
+                    <option selected value="3">Any</option>
                 </select>
             </div>
-            <div class="w3-container w3-margin ">
-                <label> Frequence, Ghz </label>
-                <select class="w3-select w3-bordered" name="option">
-                    <option value="" disabled selected>Choose frequence</option>
-                    <option value="1">1 Ghz</option>
-                    <option value="2">2 Ghz</option>
-                    <option value="3">3 Ghz</option>
-                    <option value="4">4 Ghz</option>
-                </select>
-            </div>
+            <!--<div class="w3-container w3-margin ">-->
+                <!--<label> Frequence, Ghz </label>-->
+                <!--<select class="w3-select w3-bordered" name="option">-->
+                    <!--<option value="" disabled selected>Choose frequence</option>-->
+                    <!--<option value="1">1 Ghz</option>-->
+                    <!--<option value="2">2 Ghz</option>-->
+                    <!--<option value="3">3 Ghz</option>-->
+                    <!--<option value="4">4 Ghz</option>-->
+                <!--</select>-->
+            <!--</div>-->
         </div>
         <div class="w3-container w3-border w3-margin">
             <h3>Region</h3>
             <div class="w3-container w3-margin ">
                 <label> Region </label>
-                <select class="w3-select w3-bordered" name="option">
+                <select id="region" class="w3-select w3-bordered" name="option">
                     <option value="" disabled selected>Choose region</option>
                     <option value="1">Europe</option>
                     <option value="2">Asia</option>
@@ -66,6 +71,7 @@
                     <option value="4">North America</option>
                     <option value="5">South America</option>
                     <option value="6">Australia</option>
+                    <option selected value="7">Any</option>
                 </select>
             </div>
         </div>
@@ -76,25 +82,25 @@
                     <div class="w3-row">
                         <div class="w3-col" style="width:45%">
                             <label>from</label>
-                            <input class="w3-input  " type="text">
+                            <input id="diskMin" class="w3-input  " type="text" value = "0">
                         </div>
                         <div class="w3-col w3-right" style="width:45%">
                             <label>to</label>
-                            <input class="w3-input  " type="text">
+                            <input  id="diskMax" class="w3-input  " type="text" value = "100000">
                         </div>
                     </div>
                 </div>
 
-                <div class="w3-container w3-margin ">
-                    <label> Manufacturer </label>
-                    <select class="w3-select w3-bordered" name="option">
-                        <option value="" disabled selected>Choose manufacturer</option>
-                        <option value="1">Toshiba</option>
-                        <option value="2">Samsung</option>
-                    </select>
-                </div>
+                <!--<div class="w3-container w3-margin ">-->
+                    <!--<label> Manufacturer </label>-->
+                    <!--<select class="w3-select w3-bordered" name="option">-->
+                        <!--<option value="" disabled selected>Choose manufacturer</option>-->
+                        <!--<option value="1">Toshiba</option>-->
+                        <!--<option value="2">Samsung</option>-->
+                    <!--</select>-->
+                <!--</div>-->
             </div>
         <br>
-        <button class="w3-button w3-black w3-round w3-margin">search</button>
+        <button class="w3-button w3-black w3-round w3-margin" onclick="findMachine()">search</button>
     </div>
 </div>

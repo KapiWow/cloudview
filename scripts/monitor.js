@@ -55,7 +55,7 @@ function getInfo() {
     var params = encodeURIComponent(document.getElementById("idInput").value);
 
     getCurrentUsage.open('GET',
-        'https://cloudviewkapi.azurewebsites.net/api/getCurrentUsage/id/'+params+'?code=aljX02ilPeWUo87i6IfHY975tm9ThHVaXdj9NQagNkrIQeIIoWaFKw==',
+        'https://cloudviewkapi.azurewebsites.net/api/statistic/getCurrentUsage/'+params+'?code=aljX02ilPeWUo87i6IfHY975tm9ThHVaXdj9NQagNkrIQeIIoWaFKw==',
         true);
 
     getCurrentUsage.onreadystatechange = function () {
@@ -86,7 +86,7 @@ function getInfo() {
     var params =  encodeURIComponent(document.getElementById("idInput").value);
 
     getMachineInfo.open('GET',
-        'https://cloudviewkapi.azurewebsites.net/api/getMachineInfo/id/'+params+'?code=3BYxXhfxZDiaVCZCXlIaLw9uQIkzarF/wwcDidN74AI/aAtzrIvJBQ==',
+        'https://cloudviewkapi.azurewebsites.net/api/machine/'+params+'?name=2345&code=3BYxXhfxZDiaVCZCXlIaLw9uQIkzarF/wwcDidN74AI/aAtzrIvJBQ==',
         true);
 
     getMachineInfo.onreadystatechange  = function () {

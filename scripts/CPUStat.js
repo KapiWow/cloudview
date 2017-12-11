@@ -12,7 +12,7 @@ function drawCPUChart() {
     var CPUChart = new XMLHttpRequest();
 
     CPUChart.open('GET',
-        'https://cloudviewkapi.azurewebsites.net/api/getCharts/CPU?code=w7sR6u/N/nqSM3foecfC8gJxyPdaabRk2Hvlq0FY8SPF6J0wtG7CCQ==',
+        'https://cloudviewkapi.azurewebsites.net/api/statistic/getCharts/CPU?code=w7sR6u/N/nqSM3foecfC8gJxyPdaabRk2Hvlq0FY8SPF6J0wtG7CCQ==',
         true);
 
 
@@ -58,7 +58,7 @@ function drawCPUChart() {
     var locationChart = new XMLHttpRequest();
 
     locationChart.open('GET',
-        'https://cloudviewkapi.azurewebsites.net/api/getCharts/location?code=w7sR6u/N/nqSM3foecfC8gJxyPdaabRk2Hvlq0FY8SPF6J0wtG7CCQ==',
+        'https://cloudviewkapi.azurewebsites.net/api/statistic/getCharts/location?code=w7sR6u/N/nqSM3foecfC8gJxyPdaabRk2Hvlq0FY8SPF6J0wtG7CCQ==',
         true);
 
 

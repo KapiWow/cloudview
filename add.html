@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<script src="scripts/add.js"></script>
+
+<header class="w3-container" style="padding-top:22px">
+    <h2><b><i class="fa fa-users"></i> Add</b></h2>
+</header>
+
+<div class="w3-container w3-margin" style="max-width:400px;">
+    <div class="w3-div">
+        <label>CPU</label>
+        <input id="CPU" class="w3-input w3-margin" type="text" value="">
+    </div>
+    <div class="w3-div">
+        <label>Disk</label>
+        <input id="Disk" class="w3-input w3-margin" type="text" value="">
+    </div>
+    <div class="w3-div">
+        <label>Memory</label>
+        <input id="Memory" class="w3-input w3-margin" type="text" value="">
+    </div>
+    <div class="w3-div">
+        <label>City</label>
+        <input id="City" class="w3-input w3-margin" type="text" value="">
+    </div>
+
+    <button class="w3-button w3-black w3-round w3-margin" onclick="add()">Add</button>
+</div>
+
+<div class="w3-container w3-margin" style="max-width:300px;">
+    <div class="w3-div">
+        <label>id</label>
+        <input id="del" class="w3-input w3-margin" type="text" value="">
+    </div>
+
+    <button class="w3-button w3-black w3-round w3-margin" onclick="deleteMachine()">Delete</button>
+</div>

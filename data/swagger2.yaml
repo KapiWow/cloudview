@@ -1,0 +1,143 @@
+swagger: '2.0'
+info:
+  description: This is a cloudview API
+  version: 1.0.0
+  title: Simple Inventory API
+# tags are used for organizing operations
+tags:
+- name: machines
+  description: all about this computer
+- name: statistic
+  description: statistic about using machine
+
+paths:
+  /machine/{id}:
+    get:
+      tags:
+      - machines
+      summary: find machine by ID
+      operationId: findById
+      produces: 
+      - application/xml
+      parameters:
+      - name: id
+        in: path
+        description: ID of machine to return
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: ok
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Machine not found
+  /machine/findByInfo:
+    get:
+      tags:
+      - machines
+      summary: Find machine by info
+      operationId: findByInfo
+      produces:
+      - application/xml
+      parameters:
+      - name: region
+        in: query
+        description: Location of machine
+        required: false
+        type: string
+      - name: cores
+        in: query
+        description: num of cores
+        required: false
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 16
+      - name: manufacturer
+        in: query
+        description: cpu manufacturer
+        required: false
+        type: string
+      - name: diskMin
+        in: query
+        description: min volume of disk
+        required: false
+        type: integer
+        format: int32
+      - name: diskMax
+        in: query
+        description: max volume of disk
+        required: false
+        type: integer
+        format: int32
+      responses:
+        200:
+          description: ok
+        400:
+          description: invalid info
+  /machine/add:
+    post:
+      tags:
+      - machines
+      summary: add new machine
+      operationId: addMachine
+      responses:
+        200:
+          description: ok
+          
+  /machine/delete/{id}:
+    delete:
+      tags:
+      - machines
+      summary: add new machine
+      operationId: deleteMachine
+      parameters:
+      - name: id
+        in: path
+        description: ID of machine to return
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: ok
+  /statistic/getCurrentUsage/{id}:
+    get:
+      tags:
+      - statistic
+      summary: get usage of machine
+      operationId: getUsage
+      parameters:
+      - name: id
+        in: path
+        description: ID of machine to return
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: ok
+  /statistic/getCharts/{chart}:
+    get:
+      tags:
+      - statistic
+      summary: get charts
+      operationId: getCharts
+      parameters:
+      - name: chart
+        in: path
+        description: ID of machine to return
+        required: true
+        type: string
+      responses:
+        200:
+          description: ok
+# Added by API Auto Mocking Plugin
+# basePath: /cloudviewkapi.azurewebsites.net/api
+schemes:
+ - https
+host: virtserver.swaggerhub.com
+# Added by API Auto Mocking Plugin
+basePath: /cloudview/cloudview/1.0.0

@@ -1,5 +1,6 @@
 function clearBar() {
     // userBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
+    addBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
     serverBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
     statBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
     monitorBar.setAttribute('class', "w3-bar-item w3-button w3-padding");
@@ -17,8 +18,14 @@ $(document).ready(function () {
 
 function barClick(sender, barID) {
     urlName = "";
+    //console.log(123);
     bar = monitorBar;
     switch (barID) {
+        case 1:
+            console.log(123);
+            urlName = "add.html";
+            bar = addBar;
+            break;
         case 2:
             urlName = "server.html";
             bar = serverBar;
