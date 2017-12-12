@@ -1,4 +1,18 @@
 window.addEventListener('load', function () {
+
+    var locationChart = new XMLHttpRequest();
+
+    locationChart.open('GET',
+        'https://cloudviewkapi.azurewebsites.net/api/statistic/getCharts/location?code=w7sR6u/N/nqSM3foecfC8gJxyPdaabRk2Hvlq0FY8SPF6J0wtG7CCQ==',
+        true);
+
+
+    locationChart.onreadystatechange = function () {
+
+    };
+
+    locationChart.send();
+
     var webAuth = new auth0.WebAuth({
         domain: 'kapiwow.eu.auth0.com',
         clientID: 'siHY5FdUCzyQqExU2CXS4D6jtonsfnNy',

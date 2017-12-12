@@ -1,7 +1,7 @@
 <script src="scripts/add.js"></script>
 
 <header class="w3-container" style="padding-top:22px">
-    <h2><b><i class="fa fa-users"></i> Add</b></h2>
+    <h2><b><i class="fa fa-cog"></i> Add</b></h2>
 </header>
 
 <div class="w3-container w3-margin" style="max-width:400px;">
@@ -25,7 +25,29 @@
     <button class="w3-button w3-black w3-round w3-margin" onclick="add()">Add</button>
 </div>
 
-<div class="w3-container w3-margin" style="max-width:300px;">
+<div class="w3-container w3-margin" style="max-width:400px;">
+    <div class="w3-div">
+        <label>id</label>
+        <input id="update" class="w3-input w3-margin" type="text" value="">
+    </div>
+
+        <label>Type</label>
+        <select id="updateType" class="w3-select w3-bordered  w3-margin" name="option" >
+            <option value="" disabled selected>Choose type</option>
+            <option value="cpu">CPU</option>
+            <option value="disk">Disk</option>
+            <option value="memory">Memory</option>
+            <option selected value="city">City</option>
+        </select>
+
+    <div class="w3-div">
+        <label>model</label>
+        <input id="model" class="w3-input w3-margin" type="text" value="">
+    </div>
+    <button class="w3-button w3-black w3-round w3-margin" onclick="update()">Update</button>
+</div>
+
+<div class="w3-container w3-margin" style="max-width:400px;">
     <div class="w3-div">
         <label>id</label>
         <input id="del" class="w3-input w3-margin" type="text" value="">
